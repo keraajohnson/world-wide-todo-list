@@ -1,4 +1,4 @@
-export interface Todo {
+export interface Todos {
   id: string;
   text: string;
   complete: boolean;
@@ -6,7 +6,7 @@ export interface Todo {
   updatedAt?: string;
 }
 
-const todos: Todo[] = [];
+const todos: Todos[] = [];
 
 export function getAll() {
   return todos;

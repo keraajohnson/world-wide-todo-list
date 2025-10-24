@@ -1,26 +1,109 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Theme tokens */
+@theme {
+  --color-primary: #7c5dfa; /* violet */
+  --color-accent: #ffb3c1; /* blush */
+  --color-success: #a8e6cf; /* mint */
+  --color-warning: #ffd166; /* honey */
+  --color-paper: #f9f7fd; /* bg */
+  --color-ink: #2e2e3a; /* text */
+
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-poppins), var(--font-inter), system-ui, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* Base + typography + polish */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    @apply box-border;
+  }
+  html {
+    @apply bg-paper text-ink font-sans;
+  }
+  body {
+    @apply min-h-screen antialiased;
+  }
+  img,
+  video {
+    @apply max-w-full h-auto;
+  }
+  button {
+    @apply cursor-pointer;
+  }
+  ::selection {
+    @apply bg-primary/20;
+  }
+  a {
+    @apply text-primary hover:underline;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* smooth interactions */
+  * {
+    @apply transition-colors duration-200;
+  }
+
+  /* focus visibility */
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary/60 ring-offset-2 ring-offset-paper;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-ink/20 rounded-full hover:bg-ink/40;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  /* headings */
+  h1 {
+    @apply font-display text-4xl md:text-5xl font-semibold text-primary tracking-tight;
+  }
+  h2 {
+    @apply font-display text-3xl md:text-4xl font-semibold text-ink tracking-tight;
+  }
+  h3 {
+    @apply font-display text-2xl md:text-3xl font-semibold text-ink;
+  }
+  h4 {
+    @apply font-display text-xl font-medium text-ink;
+  }
+  h5 {
+    @apply font-display text-lg font-medium text-ink;
+  }
+
+  /* text */
+  p {
+    @apply font-sans text-base leading-relaxed text-ink/90;
+  }
+  small {
+    @apply text-sm text-ink/70;
+  }
+  strong {
+    @apply font-semibold text-ink;
+  }
+  ul,
+  ol {
+    @apply list-disc list-inside text-ink/90;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Reusable utilities */
+@utility btn {
+  @apply inline-flex items-center justify-center rounded-md px-3 py-2 font-medium text-white bg-primary hover:bg-primary/90;
+}
+@utility container {
+  @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+@utility card {
+  @apply bg-white rounded-lg shadow-sm p-4;
+}
+@utility input {
+  @apply w-full rounded-md border border-ink/10 bg-white px-3 py-2 text-ink placeholder:text-ink/50 focus:outline-none focus:ring-2 focus:ring-primary/40;
 }
