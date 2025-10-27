@@ -15,7 +15,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
-      <body>{children}</body>
+      <body className="relative mx-auto bg-[url('/paper-bg.jpg')] bg-no-repeat bg-contain bg-center">
+        {children}
+      </body>
     </html>
   );
 }

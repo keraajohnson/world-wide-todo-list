@@ -11,6 +11,15 @@ export async function getTodos() {
   return res.json();
 }
 
+export async function addTodo(payload: { text: string }) {
+  const res = await fetch(`${BASE}/api/todos`, {
+    method: 'POST',
+    body: JSON.stringify(payload),
+    headers: { 'Content-Type': 'application/json' },
+  });
+  return res.json();
+}
+
 export async function updateTodo(id: string, patch: TodoPatch) {
   const res = await fetch(`${BASE}/api/todos/${id}`, {
     method: 'PATCH',
@@ -19,4 +28,13 @@ export async function updateTodo(id: string, patch: TodoPatch) {
   });
 
   return res.json();
+}
+
+export async function deleteTodo(id: string) {
+  const res = await fetch(`${BASE}/api/todos/${id}`, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+  });
+
+  if (!res.ok) throw new Error('Failed to delete todo');
 }

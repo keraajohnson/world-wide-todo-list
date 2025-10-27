@@ -7,6 +7,7 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
+  console.log(request);
   const { text } = await request.json();
   const todo = add(text);
 

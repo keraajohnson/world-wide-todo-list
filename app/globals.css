@@ -1,13 +1,14 @@
 @import 'tailwindcss';
+@plugin "@tailwindcss/forms";
 
 /* Theme tokens */
 @theme {
-  --color-primary: #7c5dfa; /* violet */
-  --color-accent: #ffb3c1; /* blush */
-  --color-success: #a8e6cf; /* mint */
-  --color-warning: #ffd166; /* honey */
-  --color-paper: #f9f7fd; /* bg */
-  --color-ink: #2e2e3a; /* text */
+  --color-primary: #5c7fa3;
+  --color-accent: #e4b4a6;
+  --color-success: #9fc2ba;
+  --color-warning: #f3d26a;
+  --color-paper: #c9e2e6; /* bg */
+  --color-ink: #2f2f38; /* text */
 
   --font-sans: var(--font-inter), system-ui, sans-serif;
   --font-display: var(--font-poppins), var(--font-inter), system-ui, sans-serif;
@@ -23,9 +24,25 @@
   html {
     @apply bg-paper text-ink font-sans;
   }
-  body {
-    @apply min-h-screen antialiased;
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: rgba(255, 255, 255, 0.4);
+    z-index: 0;
   }
+
+  body > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  body {
+    @apply bg-paper min-h-screen antialiased;
+  }
+
   img,
   video {
     @apply max-w-full h-auto;
@@ -38,6 +55,10 @@
   }
   a {
     @apply text-primary hover:underline;
+  }
+
+  input[type='checkbox'] {
+    @apply appearance-none h-5 w-5 rounded border border-ink/30 text-primary checked:bg-primary checked:border-primary focus:ring-primary;
   }
 
   /* smooth interactions */

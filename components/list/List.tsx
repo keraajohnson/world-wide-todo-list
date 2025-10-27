@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 // data & types
 import { Todos } from '@/lib/todoStore';
-import { updateTodo } from '@/lib/api/todos';
+import { deleteTodo, updateTodo } from '@/lib/api/todos';
 
 // components
 import { ListItem } from '../list-item/ListItem';
@@ -24,8 +24,15 @@ export default function List({ list }: ListProps) {
 
     await updateTodo(id, { complete: nextChecked });
   };
+
+  const handleDelete = async (id: string) => {
+    setTodos((prev) => prev?.filter((item) => item.id !== id));
+    await deleteTodo(id);
+  };
+
+  if (!todos) return <h2>Add something</h2>;
   return (
-    <section className="container bg-accent p-10 rounded-lg md:w-1/2 md:m-auto">
+    <div>
       <h2 className="mb-4">To Do</h2>
       <ul>
         {todos?.map((item) => {
@@ -36,11 +43,12 @@ export default function List({ list }: ListProps) {
                 text={item.text}
                 completed={item.complete}
                 onToggle={handleToggle}
+                onDelete={handleDelete}
               />
             </li>
           );
         })}
       </ul>
-    </section>
+    </div>
   );
 }
