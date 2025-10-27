@@ -90,7 +90,7 @@
   }
   ul,
   ol {
-    @apply list-disc list-inside text-ink/90;
+    @apply list-none list-inside text-ink/90;
   }
 }
 
