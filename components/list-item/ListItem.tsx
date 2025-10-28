@@ -1,22 +1,26 @@
 'use client';
-
+import { useRouter } from 'next/navigation';
+import { deleteTodo, updateTodo } from '@/lib/api/todos';
 import classNames from 'classnames';
 
 interface ListItemProps {
   id: string;
   text: string;
   completed: boolean;
-  onToggle: (id: string, next: boolean) => void;
-  onDelete: (id: string) => void;
 }
 
-export function ListItem({
-  id,
-  text,
-  completed,
-  onToggle,
-  onDelete,
-}: ListItemProps) {
+export function ListItem({ id, text, completed }: ListItemProps) {
+  const router = useRouter();
+  const onToggle = async (id: string, nextChecked: boolean) => {
+    await updateTodo(id, { complete: nextChecked });
+    router.refresh();
+  };
+
+  const onDelete = async (id: string) => {
+    await deleteTodo(id);
+    router.refresh();
+  };
+
   return (
     <div className="flex items-center justify-between mb-4 rounded-lg px-4 py-3 ">
       <label htmlFor={id} className="flex items-center mb-3">

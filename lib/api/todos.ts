@@ -6,6 +6,7 @@ export type TodoPatch = {
 };
 
 export async function getTodos() {
+  console.log('Fetching todos from', `${BASE}/api/todos`);
   const res = await fetch(`${BASE}/api/todos`, { cache: 'no-store' });
   if (!res.ok) throw new Error('Failed to fetch todos');
   return res.json();

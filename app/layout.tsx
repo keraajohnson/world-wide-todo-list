@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import './globals.css';
 import { Inter, Poppins } from 'next/font/google';
 
@@ -7,6 +8,10 @@ const poppins = Poppins({
   weight: ['400', '600'],
   variable: '--font-poppins',
 });
+
+export const metadata: Metadata = {
+  title: 'World Wide To Do List',
+};
 
 export default function RootLayout({
   children,
