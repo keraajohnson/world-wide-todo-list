@@ -1,7 +1,9 @@
 'use client';
 import { useRouter } from 'next/navigation';
-import { addTodo } from '@/lib/api/todos';
 import { ChangeEvent, FormEvent, useState } from 'react';
+
+// api
+import { addTodo } from '@/lib/api/todos';
 
 export default function Add() {
   const router = useRouter();
@@ -15,7 +17,7 @@ export default function Add() {
       await addTodo({ text: todo });
       router.refresh();
     } catch (err) {
-      console.log(err);
+      console.warn(err);
     }
   };
 

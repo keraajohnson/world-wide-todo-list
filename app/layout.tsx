@@ -1,4 +1,6 @@
 import { Metadata } from 'next';
+
+// styles
 import './globals.css';
 import { Inter, Poppins } from 'next/font/google';
 
@@ -20,9 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
-      <body className="relative mx-auto bg-[url('/paper-bg.jpg')] bg-no-repeat bg-contain bg-center">
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

@@ -30,7 +30,7 @@
     position: fixed;
     inset: 0;
     pointer-events: none;
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.6);
     z-index: 0;
   }
 
@@ -40,7 +40,7 @@
   }
 
   body {
-    @apply bg-paper min-h-screen antialiased;
+    @apply min-h-screen antialiased;
   }
 
   img,
@@ -127,4 +127,11 @@
 }
 @utility input {
   @apply w-full rounded-md border border-ink/10 bg-white px-3 py-2 text-ink placeholder:text-ink/50 focus:outline-none focus:ring-2 focus:ring-primary/40;
+}
+@utility haze {
+  @apply relative isolate before:content-[''] before:absolute before:inset-0 before:pointer-events-none before:z-0;
+
+  &::before {
+    background: rgba(255, 255, 255, 0.6);
+  }
 }

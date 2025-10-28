@@ -1,7 +1,9 @@
 'use client';
 import { useRouter } from 'next/navigation';
-import { deleteTodo, updateTodo } from '@/lib/api/todos';
 import classNames from 'classnames';
+
+// api
+import { deleteTodo, updateTodo } from '@/lib/api/todos';
 
 interface ListItemProps {
   id: string;
@@ -44,7 +46,7 @@ export function ListItem({ id, text, completed }: ListItemProps) {
       <button
         type="button"
         aria-label="Delete"
-        className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-ink/10 bg-white/70 text-warning/80 hover:bg-warning/10 hover:text-warning shadow-sm"
+        className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-ink/10 text-white bg-warning/80 hover:bg-warning/10 hover:text-warning shadow-sm"
         onClick={() => onDelete(id)}
       >
         ×
